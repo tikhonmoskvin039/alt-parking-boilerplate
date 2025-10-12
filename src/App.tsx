@@ -1,37 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import appLogo from '/favicon.svg'
-import PWABadge from './PWABadge.tsx'
-import './App.css'
+import { Button } from "@heroui/react";
+import classNames from "classnames";
+import { FC, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import classes from "./App.module.scss";
+import reactLogo from "./assets/react.svg";
+import appLogo from "/favicon.svg";
+import PWABadge from "./PWABadge.tsx";
+
+export const App: FC = () => {
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
+    <div className={classes.root}>
+      <div className={classes.header}>
         <a href="https://vite.dev" target="_blank">
-          <img src={appLogo} className="logo" alt="alt-parking logo" />
+          <img src={appLogo} className={classes.logo} alt="alt-parking logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img
+            src={reactLogo}
+            className={classNames(classes.logo, classes.react)}
+            title="logo react"
+            alt="React logo"
+          />
         </a>
       </div>
       <h1>alt-parking</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+      <div className={classes.card}>
+        <Button color="primary" onPress={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p className={classes.readTheDocs}>Click on the Vite and React logos to learn more</p>
       <PWABadge />
-    </>
-  )
-}
-
-export default App
+    </div>
+  );
+};
