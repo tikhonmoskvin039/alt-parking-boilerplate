@@ -1,9 +1,9 @@
 .root {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .header {
@@ -12,11 +12,11 @@
 }
 
 .logo {
+  box-sizing: border-box;
   height: 6em;
   padding: 1.5em;
   transition: filter 300ms;
   will-change: filter;
-  box-sizing: border-box;
 }
 
 .logo:hover {
