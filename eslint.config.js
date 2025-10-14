@@ -32,6 +32,8 @@ export default tseslint.config(
       ...importPlugin.configs.recommended.rules,
       "import/no-unresolved": "off",
       "prettier/prettier": "error",
+      "import/default": "off",
+      "import/named": "off",
       "import/order": [
         "error",
         {
