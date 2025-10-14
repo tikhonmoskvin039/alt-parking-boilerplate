@@ -1,27 +1,28 @@
+/* stylelint-disable scss/at-rule-no-unknown */
 @import "tailwindcss";
 @plugin './hero.ts';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
 
 #root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100dvh;
   width: 100vw;
+  height: 100dvh;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
 }
 
 [data-overlay-container="true"] {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
 }

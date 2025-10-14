@@ -21,7 +21,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "./src/"
+    "baseUrl": "./src/",
+    "paths": {
+      "components": ["components/index.ts"],
+      "components/*": ["components/*"],
+      "providers": ["providers/index.ts"],
+      "providers/*": ["providers/*"],
+      "assets/*": ["assets/*"],
+      "api": ["api/index.ts"]
+    }
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

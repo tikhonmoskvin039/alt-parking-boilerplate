@@ -1,6 +1,8 @@
-import { Button } from "@heroui/react";
+import { addToast, Button } from "@heroui/react";
 import classNames from "classnames";
+import { Form, FormInput, useForm } from "components";
 import { FC, useState } from "react";
+import { object, string } from "yup";
 
 import classes from "./App.module.scss";
 import reactLogo from "./assets/react.svg";
@@ -9,6 +11,10 @@ import PWABadge from "./PWABadge.tsx";
 
 export const App: FC = () => {
   const [count, setCount] = useState(0);
+  const formMethods = useForm({
+    schema: object({ text: string().label("Example text").meta({ placeholder: "Example placeholder" }).required() }),
+    onSuccess: ({ text }) => addToast({ title: text }),
+  });
 
   return (
     <div className={classes.root}>
@@ -36,6 +42,11 @@ export const App: FC = () => {
       </div>
       <p className={classes.readTheDocs}>Click on the Vite and React logos to learn more</p>
       <PWABadge />
+
+      <Form {...formMethods}>
+        <FormInput name="text" />
+        <Button onPress={formMethods.submit}>Submit</Button>
+      </Form>
     </div>
   );
 };
