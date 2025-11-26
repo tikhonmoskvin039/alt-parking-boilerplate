@@ -1,0 +1,20 @@
+name: reviewdog
+on: [pull_request]
+jobs:
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ESLint
+        run: npx eslint --ext .ts,.tsx --config ./eslint.config.js src/
+      - name: Reviewdog ESLint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          # eslint_flags: "src/"
+          # eslint_flags: "--config eslint.config.js src/"
