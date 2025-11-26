@@ -1,0 +1,40 @@
+name: Lint and Format Check
+
+# Когда ты пушишь изменения или создаешь pull request, GitHub будет показывать ошибки линтинга прямо в разделе Checks. Ты сможешь увидеть:
+
+# Ошибки ESLint в PR, если они будут обнаружены.
+
+# Уведомления о том, что линтинг не прошел, если в отчете есть ошибки.
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run ESLint and generate JSON report
+        run: pnpm run lint --format json --output-file eslint-report.json
+      # Для того, чтобы GitHub мог обработать твой отчет, ты должен использовать CodeQL SARIF Action, которая позволяет загружать любой отчет в формате SARIF (даже если у тебя JSON отчет). Ты можешь использовать этот шаг для загрузки отчета, даже если он не совсем в формате SARIF, но структура JSON остается совместимой с требованиями GitHub.
+      - name: Upload ESLint report to GitHub
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: eslint-report.json
