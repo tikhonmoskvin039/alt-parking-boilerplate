@@ -10,7 +10,7 @@ import appLogo from "/favicon.svg";
 import PWABadge from "./PWABadge.tsx";
 
 export const App: FC = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<{ key: string }>(0);
   const formMethods = useForm({
     schema: object({ text: string().label("Example text").meta({ placeholder: "Example placeholder" }).required() }),
     onSuccess: ({ text }) => addToast({ title: text }),
