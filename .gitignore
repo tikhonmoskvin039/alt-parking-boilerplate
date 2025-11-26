@@ -26,3 +26,6 @@ dev-dist
 
 # env's
 .env
+
+# github actions report
+eslint-report.json
