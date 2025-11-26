@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc -b && vite build",
-    "lint": "eslint --fix --max-warnings=0",
+    "lint": "eslint --fix --max-warnings=0  --format json --output-file eslint-report.json",
     "preview": "vite preview",
     "prettier": "npx prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "stylelint": "stylelint \"src/**/*.scss\" --fix --max-warnings=0",
